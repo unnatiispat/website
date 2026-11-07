@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from alcancekeys.com/trainathon/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Jun 2015 05:33:05 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Welcome to Unnati Ispat</title>
+<link rel="canonical" href="https://unnatiispat.com/" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,600,700,300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link rel="shortcut icon" href="images/fevicon.jpg" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<style type="text/css">
+
+/*Example CSS for the two demo scrollers*/
+
+#pscroller1{
+width: 250px;
+height: 175px;
+
+padding: 5px;
+color:#fff;
+}
+
+#pscroller1 ul li{color:#fff;}
+
+#pscroller2{
+width: 350px;
+height: 20px;
+border: 1px solid black;
+padding: 3px;
+}
+
+#pscroller2 a{
+text-decoration: none;
+}
+
+/* .someclass{ //class to apply to your scroller(s) if desired
+} */
+
+</style>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+/*Example message arrays for the two demo scrollers*/
+
+
+
+var pausecontent=new Array()
+pausecontent[0]='<ul> <li> Automobile Industries </li><li> Builders and Developers  </li><li> Central & Western Railway  </li><li> Drugs & Pharmaceuticals Plants  </li><li> Engineering & Construction (EPC)  </li><li> Fertilizers and Chemical Plants   </li></ul>'
+pausecontent[1]='<ul><li> Mumbai Rail Vikas Corporation Ltd.  </li><li> Oil & Gas Industries  </li><li> Petroleum Refineries  </li><li> Power Plants  </li><li> Ship Building Industry  </li><li> Structural Fabrication Units  </li><li> Textile Industry  </li></ul>'
+
+</script>
+
+<script type="text/javascript">
+
+/***********************************************
+* Pausing up-down scroller- (c) Dynamic Drive (www.dynamicdrive.com)
+* Please keep this notice intact
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+
+function pausescroller(content, divId, divClass, delay){
+this.content=content //message array content
+this.tickerid=divId //ID of ticker div to display information
+this.delay=delay //Delay between msg change, in miliseconds.
+this.mouseoverBol=0 //Boolean to indicate whether mouse is currently over scroller (and pause it if it is)
+this.hiddendivpointer=1 //index of message array for hidden div
+document.write('<div id="'+divId+'" class="'+divClass+'" style="position: relative; overflow: hidden"><div class="innerDiv" style="position: absolute; width: 100%" id="'+divId+'1">'+content[0]+'</div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="'+divId+'2">'+content[1]+'</div></div>')
+var scrollerinstance=this
+if (window.addEventListener) //run onload in DOM2 browsers
+window.addEventListener("load", function(){scrollerinstance.initialize()}, false)
+else if (window.attachEvent) //run onload in IE5.5+
+window.attachEvent("onload", function(){scrollerinstance.initialize()})
+else if (document.getElementById) //if legacy DOM browsers, just start scroller after 0.5 sec
+setTimeout(function(){scrollerinstance.initialize()}, 500)
+}
+
+// -------------------------------------------------------------------
+// initialize()- Initialize scroller method.
+// -Get div objects, set initial positions, start up down animation
+// -------------------------------------------------------------------
+
+pausescroller.prototype.initialize=function(){
+this.tickerdiv=document.getElementById(this.tickerid)
+this.visiblediv=document.getElementById(this.tickerid+"1")
+this.hiddendiv=document.getElementById(this.tickerid+"2")
+this.visibledivtop=parseInt(pausescroller.getCSSpadding(this.tickerdiv))
+//set width of inner DIVs to outer DIV's width minus padding (padding assumed to be top padding x 2)
+this.visiblediv.style.width=this.hiddendiv.style.width=this.tickerdiv.offsetWidth-(this.visibledivtop*2)+"px"
+this.getinline(this.visiblediv, this.hiddendiv)
+this.hiddendiv.style.visibility="visible"
+var scrollerinstance=this
+document.getElementById(this.tickerid).onmouseover=function(){scrollerinstance.mouseoverBol=1}
+document.getElementById(this.tickerid).onmouseout=function(){scrollerinstance.mouseoverBol=0}
+if (window.attachEvent) //Clean up loose references in IE
+window.attachEvent("onunload", function(){scrollerinstance.tickerdiv.onmouseover=scrollerinstance.tickerdiv.onmouseout=null})
+setTimeout(function(){scrollerinstance.animateup()}, this.delay)
+}
+
+
+// -------------------------------------------------------------------
+// animateup()- Move the two inner divs of the scroller up and in sync
+// -------------------------------------------------------------------
+
+pausescroller.prototype.animateup=function(){
+var scrollerinstance=this
+if (parseInt(this.hiddendiv.style.top)>(this.visibledivtop+5)){
+this.visiblediv.style.top=parseInt(this.visiblediv.style.top)-5+"px"
+this.hiddendiv.style.top=parseInt(this.hiddendiv.style.top)-5+"px"
+setTimeout(function(){scrollerinstance.animateup()}, 50)
+}
+else{
+this.getinline(this.hiddendiv, this.visiblediv)
+this.swapdivs()
+setTimeout(function(){scrollerinstance.setmessage()}, this.delay)
+}
+}
+
+// -------------------------------------------------------------------
+// swapdivs()- Swap between which is the visible and which is the hidden div
+// -------------------------------------------------------------------
+
+pausescroller.prototype.swapdivs=function(){
+var tempcontainer=this.visiblediv
+this.visiblediv=this.hiddendiv
+this.hiddendiv=tempcontainer
+}
+
+pausescroller.prototype.getinline=function(div1, div2){
+div1.style.top=this.visibledivtop+"px"
+div2.style.top=Math.max(div1.parentNode.offsetHeight, div1.offsetHeight)+"px"
+}
+
+// -------------------------------------------------------------------
+// setmessage()- Populate the hidden div with the next message before it's visible
+// -------------------------------------------------------------------
+
+pausescroller.prototype.setmessage=function(){
+var scrollerinstance=this
+if (this.mouseoverBol==1) //if mouse is currently over scoller, do nothing (pause it)
+setTimeout(function(){scrollerinstance.setmessage()}, 100)
+else{
+var i=this.hiddendivpointer
+var ceiling=this.content.length
+this.hiddendivpointer=(i+1>ceiling-1)? 0 : i+1
+this.hiddendiv.innerHTML=this.content[this.hiddendivpointer]
+this.animateup()
+}
+}
+
+pausescroller.getCSSpadding=function(tickerobj){ //get CSS padding value, if any
+if (tickerobj.currentStyle)
+return tickerobj.currentStyle["paddingTop"]
+else if (window.getComputedStyle) //if DOM2
+return window.getComputedStyle(tickerobj, "").getPropertyValue("padding-top")
+else
+return 0
+}
+
+</script>
+</head>
+
+<body onmousedown="return false" onselectstart="return false">
+
+<!--<div class="top-header"> 
+<div class="container">
+<div class="span40"> <div class="hotline"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;unnatiispat@hotmail.com &nbsp; / &nbsp; <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;+91 098212 41101 / 093234 41101 </div></div>	
+<div class="span16 pull-right"> <div class="social">
+<a href="#"> <img src="images/fb.png" /> </a>
+<a href="#"> <img src="images/twitter.png" /> </a>
+<a href="#"> <img src="images/rss.png" /> </a>
+<a href="#"> <img src="images/google-plus.png" /> </a>
+<a href="#"> <img src="images/pinterest.png" /> </a>
+</div> 
+</div>
+</div>
+</div>-->
+
+<header class="clearfix"> 
+<div class="container"> 
+<div class="span28"> 
+<div class="logo"> <a href="index.html"> <img src="images/logo.png" align="Trainathon" title="Trainathon"> </a> </div>
+</div>
+<div class="span70 pull-right">
+             <div class="navbar navbar-inverse">
+              <div class="navbar-inner">
+                <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS tutilize. -->
+                <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+                <div class="nav-collapse collapse pull-right">
+                  
+                  <ul class="nav">
+					<li><a href="index.html"><i class="fa fa-home" aria-hidden="true" style="color:#FF4500;font-size:24px;"></i></a></li>
+					<li><a href="about_us.html">About Us</a></li>
+					<!--<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Products </a>
+						<ul class="dropdown-menu">
+							<li><a href="products.html">Products 1</a></li>
+							<li><a href="products.html">Products 2</a></li>
+							<li><a href="products.html">Products 3</a></li>
+						</ul>   
+					</li>-->
+					<li><a href="products.html">Products </a>
+          <li><a href="wiron.html">Wirons </a>
+					<li><a href="quality.html"> Quality</a></li>   
+          <li><a href="contact_us.html">Contact Us</a></li> 
+				</ul>	
+                        
+                </div>
+                <!--/.nav-collapse -->
+              </div>
+              <!-- /.navbar-inner -->
+            </div>
+    </div>
+</div>
+  
+</header>
+<div class="container"> 
+<div class="banner-slider">
+<div id="owl-demo" class="owl-carousel owl-theme"> 
+  
+  <div class="item"><img src="images/banner/banner1.jpg">
+  <div class="caption"> <span>M.S. CHANNELS </span> </div>
+  </div>
+  <div class="item"><img src="images/banner/banner2.jpg">
+  <div class="caption"> <span>M.S. BEAMS</span> </div>
+  </div>
+  <div class="item"><img src="images/banner/banner3.jpg">
+  <div class="caption"> <span>M.S. ANGLES</span> </div>
+  </div>
+  <div class="item"><img src="images/banner/banner4.jpg">
+  <div class="caption"> <span>TMT BARS</span> </div>
+  </div>
+  <div class="item"><img src="images/banner/banner5.jpg">
+  <div class="caption"> <span>M.S. CHECKERED PLATES</span> </div>
+  </div>
+  <div class="item"><img src="images/banner/banner6.jpg">
+  <div class="caption"> <span>H.R. COILS</span> </div>
+  </div>
+  <div class="item"><img src="images/banner/banner7.jpeg">
+    <div class="caption"> <span>M.S. ANNEALED BINDING WIRES</span> </div>
+</div>
+ 
+</div>
+</div>
+<div class="clearfix"> </div>
+
+<div class="span68"> 
+<div class="welcome-title clearfix"> <span >Welcome to <span style="color:#FF4500;">Unnati</span> <span style="color:#4885ed;">Ispat</span>  </span>  </div>
+<p>We ‘M/S. UNNATI ISPAT’, are pleased to introduce ourselves as a leading stockiest and dealers of quality proven range of Mild Steel Plates, Structural, TMT Bars-Reinforcement Steel, ERW & Galvanized Pipes, Alloy Steel & H.R./C.R./G.P. Coils and Sheets. Our breadth and complete range of steel products enables us to be the one-stop source for anything in steel.</p>
+<p>We are well-equipped to handle and manage large quantity of material in a very efficient way</p>
+<ul>
+<li>Large and well-equipped godown with crane facility</li>
+<li>Experienced staff for handling of material.</li>
+<li>A team of personnel perform inspection of material to ensure only best product quality is dispatched to clients.</li>
+<li>Ready fleet of vehicles available for efficient and effective movement of material</li>
+</ul>
+</div>
+
+<div class="span25 pull-right serving_area">  
+<div class="welcome-title2 clearfix"  style="color:fff;" > <span>Our Serving Areas</span>  </div>
+<!--<marquee srollamount="5" scrolldelay="150" direction="up" height="250" onmouseover="this.stop()" onmouseout="this.start()" behaviour="slide"> 
+
+
+</marquee>-->
+
+<script type="text/javascript">
+
+//new pausescroller(name_of_message_array, CSS_ID, CSS_classname, pause_in_miliseconds)
+
+new pausescroller(pausecontent, "pscroller1", "someclass", 3000)
+document.write("<br />")
+
+</script>
+</div>
+
+
+<div class="clearfix"> </div>
+<div class="span98" style="background-color:#C3C3C3;padding:10px 0 10px 0; margin:15px 0 15px 0;text-align:center;">
+<img src="images/sail.png"><br>
+<b style="font-size:22px;color:#162959;padding-top:250px;">Authorized dealer for Steel Authority Of India Limited </b>
+</div>
+
+<div class="service-content">
+<hr>
+<div class="span48" style="background-color:#4885ed;color:#fff;;"> 
+<div class="features">
+<span> About us</span>
+
+<p>Mr. Bhaven A. Shah has started his entrepreneur journey in the year 1995, and his vision & foresight as an achiever, put forth his best initiation in pioneering the company. He is a firm believer in the merits of quality and ethics. His journey began as a small steel supplier in the suburbs of Mumbai, and today, the Multi-Crore Company, slowly and diligently built up a repertoire of blue chip clients and tender the services PAN India basis.</p>
+<a href="about_us.html" style="color:#fff;margin: -15px 35px 0 35px; padding:5px 10px 5px 10px;float:right;border:solid 1px #fff"> Read more</a>
+<br><br>
+</div>
+</div>
+<div class="span48 offset2" style="background-color:#606062;color:#fff;"> 
+<div class="features">
+<span> Quality Pledge</span>
+<p>We UNNATI ISPAT are committed to QUALITY, ON-TIME DELIVERY and COST-EFFECTIVENESS, to being very transparent and having customer orientated attitude to serve our best all the times, primarily since we want to be ranked as the "best" in our business. We are committed to customer satisfaction. Quality service is our basic strategy for survival and future growth. Our dedication to excellence is our prime mission. </p>
+<a href="quality.html" style="color:#fff;margin: -15px 35px 0 35px; padding:5px 10px 5px 10px;float:right;border:solid 1px #fff"> Read more</a>
+<br><br>
+</div>
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="clearfix"> </div>
+<div class="service-content">
+<h2> Products </h2>
+<div class="clearfix"> </div>
+
+<div class="container">
+<div id="owl-demo2" class="owl-carousel owl-theme"> 
+<div class="item">
+<div class="span23"> 
+<div class="services">
+<img src="images/products/1.jpg" />
+
+</div>
+</div>
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/2.jpg" />
+
+</div>
+</div>
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/3.jpg" />
+
+</div>
+</div>
+
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/4.jpg" />
+
+</div>
+</div>
+
+</div>
+<div class="item">
+
+<div class="span23"> 
+<div class="services">
+<img src="images/products/5.jpg" />
+
+</div>
+</div>
+
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/6.jpg" />
+
+</div>
+</div>
+
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/7.jpg" />
+
+</div>
+</div>
+
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/8.jpg" />
+
+</div>
+</div>
+
+</div>
+
+<div class="item">
+
+<div class="span23"> 
+<div class="services">
+<img src="images/products/9.jpg" />
+
+</div>
+</div>
+
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/10.jpg" />
+
+</div>
+</div>
+
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/11.jpg" />
+
+</div>
+</div>
+
+<div class="span23 offset2"> 
+<div class="services">
+<img src="images/products/12.jpg" />
+
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+<div class="clearfix"> </div>
+<div class="clients"> 
+<h2>We Deal With</h2>
+<p>We Trust in serving products of the most reputed brands in steel sector.</p>
+ <div class="container"> 
+
+<div id="owl-demo3" class="owl-carousel owl-theme" style="margin-top:50px;margin-bottom:50px;"> 
+   <div class="item"> 
+<div class="span14 offset2"> <img src="images/logo/1.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/2.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/4.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/5.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/6.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/7.jpg"> </div>
+
+  </div>
+  <div class="item"> 
+
+<div class="span14 offset2"> <img src="images/logo/8.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/9.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/10.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/11.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/12.jpg"> </div>
+<div class="span14 offset2"> <img src="images/logo/13.jpg"> </div>
+  
+
+
+  </div>
+
+
+
+  
+   </div>
+</div>
+ 
+</div>
+
+<div class="footer"> 
+<div class="container">
+<div class="span25"> 
+<div class="footer-title">Contact Us</div>
+<ul> 
+<li class="location">
+405, Globe Arcade,<br>
+Plot No. : RP-112,  <br>
+Nr. Ganesh Temple,<br>
+MIDC Resi. Area,<br>
+Dombivli (E), Pin 421203<br>
+Maharashtra, India</li>
+<li class="phone"> +91 91525 35156</li>
+<li class="email"> <a href="mailto:unnatiispat@hotmail.com"> unnatiispat@hotmail.com </a></li>
+<li class="email"> <a href="mailto:unnatiispat@hotmail.com"> info@unnatiispat.com </a></li>
+</ul>
+</div>
+<div class="span18 offset1"> 
+<div class="footer-title">Quick Links</div>
+<ul> 
+<li><a href="about_us.html">ABOUT US</a> </li>
+<li><a href="products.html">PRODUCTS</a> </li>
+<li><a href="wiron.html">WIRONS</a> </li>
+<li><a href="quality.html">QUALITY</a> </li>
+<li><a href="contact_us.html">CONTACT US </a> </li>
+</ul>
+</div>
+
+     
+<div class="span18 offset1"> 
+<div class="footer-title">Quick Links</div>
+<ul> 
+<li><a href="angles.html" target="_blank"> M.S. ANGLES</a></li>
+<li><a href="chkplates.html" target="_blank">M.S. CHECK. PLATES</a></li>
+<li><a href="channels.html" target="_blank">M.S. CHANNELS</a> </li>
+<li><a href="beams.html" target="_blank">M.S. BEAMS</a></li>
+<li><a href="download/PIPE.pdf" target="_blank">ERW PIPES</a> </li>
+</ul>
+</div>
+ <div class="span18 offset1"> 
+<div class="footer-title">Quick Links</div>
+<ul> 
+<li><a href="tmt.html" target="_blank"> TMT BARS</a> </li>
+<li><a href="download/RCTHOLLOW.pdf" target="_blank"> RCT. HOLLOW SECT.</a> </li>
+<li><a href="hrsheets.html" target="_blank">H.R. & C.R. SHEETS<a/></li>
+<li><a href="download/SQRHOLLOW.pdf" target="_blank"> SQR. HOLLOW SECT.</a> </li>
+<li><a href="download/PLATES.pdf" target="_blank"> M.S. PLATES</a></li>
+</ul>
+</div>
+<div class="span10 offset3"> 
+<div class="footer-title">Connect With Us</div>
+<ul> 
+<li><a href="https://www.facebook.com/unnatiispat/" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true" title="Facebook" style="font-size:45px;color:#DEDEDE;"></i></a> </li>
+<li><a href="https://www.linkedin.com/company/unnati-ispat"  target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true" title="Linked in" style="font-size:45px;color:#DEDEDE;"></i></a> </li>
+
+
+</ul>
+</div>
+
+<div class="clearfix"> </div>
+<div class="footer-bottom clearfix">
+<div class="copyright"> Copyright © 2024 Unnati Ispat, All Rights Reserved. </div>
+<div class="designed">Designed  by: <a href="https://www.linkedin.com/in/unnati9/" style="color: inherit;">Unnati Shah</a></div>
+
+
+</div>
+</div>
+</div>  
+<a class="scrollToTop" id="#" > <img src="images/back-top.png"> </a> 
+ 
+<script type="text/javascript" src="js/jquery.min.js"> </script>
+<script type="text/javascript" src="js/bootstrap.js"> </script>
+<script type="text/javascript" src="js/owl.carousel.min.js"> </script>
+<script type="text/javascript" src="js/commen.js"> </script>
+<script>
+document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+</body>
+
+
+<!-- Mirrored from alcancekeys.com/trainathon/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Jun 2015 05:33:45 GMT -->
+</html>
+
