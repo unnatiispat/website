@@ -1,540 +1,841 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!doctype html>
+<html lang="en-IN">
 
-<!-- Mirrored from alcancekeys.com/trainathon/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Jun 2015 05:33:05 GMT -->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Welcome to Unnati Ispat</title>
-<link rel="canonical" href="https://unnatiispat.com/" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,600,700,300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-<link rel="shortcut icon" href="images/fevicon.jpg" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<style type="text/css">
-
-/*Example CSS for the two demo scrollers*/
-
-#pscroller1{
-width: 250px;
-height: 175px;
-
-padding: 5px;
-color:#fff;
-}
-
-#pscroller1 ul li{color:#fff;}
-
-#pscroller2{
-width: 350px;
-height: 20px;
-border: 1px solid black;
-padding: 3px;
-}
-
-#pscroller2 a{
-text-decoration: none;
-}
-
-/* .someclass{ //class to apply to your scroller(s) if desired
-} */
-
-</style>
-
-<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-
-<script type="text/javascript">
-
-/*Example message arrays for the two demo scrollers*/
-
-
-
-var pausecontent=new Array()
-pausecontent[0]='<ul> <li> Automobile Industries </li><li> Builders and Developers  </li><li> Central & Western Railway  </li><li> Drugs & Pharmaceuticals Plants  </li><li> Engineering & Construction (EPC)  </li><li> Fertilizers and Chemical Plants   </li></ul>'
-pausecontent[1]='<ul><li> Mumbai Rail Vikas Corporation Ltd.  </li><li> Oil & Gas Industries  </li><li> Petroleum Refineries  </li><li> Power Plants  </li><li> Ship Building Industry  </li><li> Structural Fabrication Units  </li><li> Textile Industry  </li></ul>'
-
-</script>
-
-<script type="text/javascript">
-
-/***********************************************
-* Pausing up-down scroller- (c) Dynamic Drive (www.dynamicdrive.com)
-* Please keep this notice intact
-* Visit http://www.dynamicdrive.com/ for this script and 100s more.
-***********************************************/
-
-function pausescroller(content, divId, divClass, delay){
-this.content=content //message array content
-this.tickerid=divId //ID of ticker div to display information
-this.delay=delay //Delay between msg change, in miliseconds.
-this.mouseoverBol=0 //Boolean to indicate whether mouse is currently over scroller (and pause it if it is)
-this.hiddendivpointer=1 //index of message array for hidden div
-document.write('<div id="'+divId+'" class="'+divClass+'" style="position: relative; overflow: hidden"><div class="innerDiv" style="position: absolute; width: 100%" id="'+divId+'1">'+content[0]+'</div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="'+divId+'2">'+content[1]+'</div></div>')
-var scrollerinstance=this
-if (window.addEventListener) //run onload in DOM2 browsers
-window.addEventListener("load", function(){scrollerinstance.initialize()}, false)
-else if (window.attachEvent) //run onload in IE5.5+
-window.attachEvent("onload", function(){scrollerinstance.initialize()})
-else if (document.getElementById) //if legacy DOM browsers, just start scroller after 0.5 sec
-setTimeout(function(){scrollerinstance.initialize()}, 500)
-}
-
-// -------------------------------------------------------------------
-// initialize()- Initialize scroller method.
-// -Get div objects, set initial positions, start up down animation
-// -------------------------------------------------------------------
-
-pausescroller.prototype.initialize=function(){
-this.tickerdiv=document.getElementById(this.tickerid)
-this.visiblediv=document.getElementById(this.tickerid+"1")
-this.hiddendiv=document.getElementById(this.tickerid+"2")
-this.visibledivtop=parseInt(pausescroller.getCSSpadding(this.tickerdiv))
-//set width of inner DIVs to outer DIV's width minus padding (padding assumed to be top padding x 2)
-this.visiblediv.style.width=this.hiddendiv.style.width=this.tickerdiv.offsetWidth-(this.visibledivtop*2)+"px"
-this.getinline(this.visiblediv, this.hiddendiv)
-this.hiddendiv.style.visibility="visible"
-var scrollerinstance=this
-document.getElementById(this.tickerid).onmouseover=function(){scrollerinstance.mouseoverBol=1}
-document.getElementById(this.tickerid).onmouseout=function(){scrollerinstance.mouseoverBol=0}
-if (window.attachEvent) //Clean up loose references in IE
-window.attachEvent("onunload", function(){scrollerinstance.tickerdiv.onmouseover=scrollerinstance.tickerdiv.onmouseout=null})
-setTimeout(function(){scrollerinstance.animateup()}, this.delay)
-}
-
-
-// -------------------------------------------------------------------
-// animateup()- Move the two inner divs of the scroller up and in sync
-// -------------------------------------------------------------------
-
-pausescroller.prototype.animateup=function(){
-var scrollerinstance=this
-if (parseInt(this.hiddendiv.style.top)>(this.visibledivtop+5)){
-this.visiblediv.style.top=parseInt(this.visiblediv.style.top)-5+"px"
-this.hiddendiv.style.top=parseInt(this.hiddendiv.style.top)-5+"px"
-setTimeout(function(){scrollerinstance.animateup()}, 50)
-}
-else{
-this.getinline(this.hiddendiv, this.visiblediv)
-this.swapdivs()
-setTimeout(function(){scrollerinstance.setmessage()}, this.delay)
-}
-}
-
-// -------------------------------------------------------------------
-// swapdivs()- Swap between which is the visible and which is the hidden div
-// -------------------------------------------------------------------
-
-pausescroller.prototype.swapdivs=function(){
-var tempcontainer=this.visiblediv
-this.visiblediv=this.hiddendiv
-this.hiddendiv=tempcontainer
-}
-
-pausescroller.prototype.getinline=function(div1, div2){
-div1.style.top=this.visibledivtop+"px"
-div2.style.top=Math.max(div1.parentNode.offsetHeight, div1.offsetHeight)+"px"
-}
-
-// -------------------------------------------------------------------
-// setmessage()- Populate the hidden div with the next message before it's visible
-// -------------------------------------------------------------------
-
-pausescroller.prototype.setmessage=function(){
-var scrollerinstance=this
-if (this.mouseoverBol==1) //if mouse is currently over scoller, do nothing (pause it)
-setTimeout(function(){scrollerinstance.setmessage()}, 100)
-else{
-var i=this.hiddendivpointer
-var ceiling=this.content.length
-this.hiddendivpointer=(i+1>ceiling-1)? 0 : i+1
-this.hiddendiv.innerHTML=this.content[this.hiddendivpointer]
-this.animateup()
-}
-}
-
-pausescroller.getCSSpadding=function(tickerobj){ //get CSS padding value, if any
-if (tickerobj.currentStyle)
-return tickerobj.currentStyle["paddingTop"]
-else if (window.getComputedStyle) //if DOM2
-return window.getComputedStyle(tickerobj, "").getPropertyValue("padding-top")
-else
-return 0
-}
-
-</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unnati Ispat - Excellence in Steel Trading</title>
+    <meta name="description"
+        content="Unnati Ispat, Mumbai: steel trading and distribution since 2000. TMT bars, structural sections, plates, sheets, coils, hollow sections, pipes and more. Request a quote.">
+    <meta name="theme-color" content="#2C3539">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Unnati Ispat">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:title" content="Unnati Ispat - Excellence in Steel Trading">
+    <meta property="og:description"
+        content="Unnati Ispat, Mumbai: steel trading and distribution since 2000. TMT bars, structural sections, plates, sheets, coils, hollow sections, pipes and more. Request a quote.">
+    <meta property="og:image" content="images/site/banner4.jpg">
+    <meta property="og:url" content="index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@600;700;800&amp;display=swap">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    <script
+        type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Unnati Ispat", "slogan": "Excellence in Steel Trading", "foundingDate": "2000", "telephone": "+919152535156", "email": "info@unnatiispat.com", "logo": "images/logo.png", "address": {"@type": "PostalAddress", "streetAddress": "405, Globe Arcade, Plot No. RP-112, Nr. Ganesh Temple, MIDC Residential Area", "addressLocality": "Dombivli (E)", "postalCode": "421203", "addressRegion": "Maharashtra", "addressCountry": "IN"}}</script>
+    <script src="js/main.js" defer=""></script>
 </head>
 
-<body onmousedown="return false" onselectstart="return false">
-
-<!--<div class="top-header"> 
-<div class="container">
-<div class="span40"> <div class="hotline"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;unnatiispat@gmail.com &nbsp; / &nbsp; <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;+91 098212 41101 / 093234 41101 </div></div>	
-<div class="span16 pull-right"> <div class="social">
-<a href="#"> <img src="images/fb.png" /> </a>
-<a href="#"> <img src="images/twitter.png" /> </a>
-<a href="#"> <img src="images/rss.png" /> </a>
-<a href="#"> <img src="images/google-plus.png" /> </a>
-<a href="#"> <img src="images/pinterest.png" /> </a>
-</div> 
-</div>
-</div>
-</div>-->
-
-<header class="clearfix"> 
-<div class="container"> 
-<div class="span28"> 
-<div class="logo"> <a href="index.html"> <img src="images/logo.png" align="Trainathon" title="Trainathon"> </a> </div>
-</div>
-<div class="span70 pull-right">
-             <div class="navbar navbar-inverse">
-              <div class="navbar-inner">
-                <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS tutilize. -->
-                <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-                <div class="nav-collapse collapse pull-right">
-                  
-                  <ul class="nav">
-					<li><a href="index.html"><i class="fa fa-home" aria-hidden="true" style="color:#FF4500;font-size:24px;"></i></a></li>
-					<li><a href="about_us.html">About Us</a></li>
-					<!--<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Products </a>
-						<ul class="dropdown-menu">
-							<li><a href="products.html">Products 1</a></li>
-							<li><a href="products.html">Products 2</a></li>
-							<li><a href="products.html">Products 3</a></li>
-						</ul>   
-					</li>-->
-					<li><a href="products.html">Products </a>
-          <li><a href="wiron.html">Wirons </a>
-					<li><a href="quality.html"> Quality</a></li>   
-          <li><a href="contact_us.html">Contact Us</a></li> 
-				</ul>	
-                        
-                </div>
-                <!--/.nav-collapse -->
-              </div>
-              <!-- /.navbar-inner -->
-            </div>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-links"><a href="tel:+919152535156"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true" focusable="false">
+                        <path
+                            d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z">
+                        </path>
+                    </svg>+91 91525 35156</a><a href="mailto:info@unnatiispat.com"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true" focusable="false">
+                        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+                        <path d="m22 6-10 7L2 6"></path>
+                    </svg>info@unnatiispat.com</a></div>
+            <span class="topbar-tag">Since 2000</span>
+        </div>
     </div>
-</div>
-  
-</header>
-<div class="container"> 
-<div class="banner-slider">
-<div id="owl-demo" class="owl-carousel owl-theme"> 
-  
-  <div class="item"><img src="images/banner/banner1.jpg">
-  <div class="caption"> <span>M.S. CHANNELS </span> </div>
-  </div>
-  <div class="item"><img src="images/banner/banner2.jpg">
-  <div class="caption"> <span>M.S. BEAMS</span> </div>
-  </div>
-  <div class="item"><img src="images/banner/banner3.jpg">
-  <div class="caption"> <span>M.S. ANGLES</span> </div>
-  </div>
-  <div class="item"><img src="images/banner/banner4.jpg">
-  <div class="caption"> <span>TMT BARS</span> </div>
-  </div>
-  <div class="item"><img src="images/banner/banner5.jpg">
-  <div class="caption"> <span>M.S. CHECKERED PLATES</span> </div>
-  </div>
-  <div class="item"><img src="images/banner/banner6.jpg">
-  <div class="caption"> <span>H.R. COILS</span> </div>
-  </div>
-  <div class="item"><img src="images/banner/banner7.jpeg">
-    <div class="caption"> <span>M.S. ANNEALED BINDING WIRES</span> </div>
-</div>
- 
-</div>
-</div>
-<div class="clearfix"> </div>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html"><img src="images/logo.png"
+                    alt="Unnati Ispat — Excellence in Steel Trading, since 2000 — home" width="1024" height="210"></a>
+            <nav id="site-nav" class="site-nav" aria-label="Main">
+                <ul class="nav-list">
+                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="vision-mission.html">Vision &amp; Mission</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="wiron.html">Unnati Wiron</a></li>
+                    <li><a href="weight-reference.html">Steel Weight Reference Centre</a></li>
+                    <li><a href="calculator.html">Weight Calculator</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-cta-mobile"><button type="button" class="btn btn-primary btn-block"
+                        data-open="quote">Request a Quote</button></div>
+            </nav>
+            <div class="header-cta"><button type="button" class="btn btn-primary btn-sm" data-open="quote">Request a
+                    Quote</button></div>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+                aria-label="Open menu"><svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                    focusable="false">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg><svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M6 6l12 12M18 6 6 18"></path>
+                </svg></button>
+        </div>
+    </header>
+    <main id="main">
+        <section class="hero">
+            <div class="hero-media"><img src="images/site/hero-home-steel.jpg" alt="Vast modern industrial steel distribution and warehousing facility at dusk with cranes and structural inventory" width="1920" height="1080"></div>
+            <div class="container">
+                <div>
+                    <p class="kicker">Steel sourcing &amp; distribution</p>
+                    <h1>Excellence in Steel Trading<span class="text-orange">.</span></h1>
+                    <p class="hero-sub">Strengthening industries through reliable steel supply — a wide range of steel
+                        products for industrial, engineering, fabrication and infrastructure requirements.</p>
+                    <div class="btn-row">
+                        <a class="btn btn-light btn-hero-tab" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"></path></svg>About Us</a>
+                        <a class="btn btn-light btn-hero-tab btn-wiron-hero" href="wiron.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>Unnati Wiron<span class="hero-brand-badge">Our Brand</span></a>
+                        <a class="btn btn-primary" href="products.html">Explore Products<svg
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M5 12h14"></path>
+                                <path d="m13 6 6 6-6 6"></path>
+                            </svg></a>
+                        <button type="button" class="btn btn-light" data-open="quote">Request a Quote</button>
+                    </div>
+                    <ul class="hero-facts">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <path d="m9 12 2 2 4-4"></path>
+                            </svg>Trading since 2000</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path>
+                                <path d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path>
+                            </svg>Mumbai region</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 2 2 7l10 5 10-5z"></path>
+                                <path d="M2 17l10 5 10-5"></path>
+                                <path d="M2 12l10 5 10-5"></path>
+                            </svg>The widest range of steel product categories</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <div class="brand-rule" aria-hidden="true"><span></span><span></span></div>
 
-<div class="span68"> 
-<div class="welcome-title clearfix"> <span >Welcome to <span style="color:#FF4500;">Unnati</span> <span style="color:#4885ed;">Ispat</span>  </span>  </div>
-<p>We ‘M/S. UNNATI ISPAT’, are pleased to introduce ourselves as a leading stockiest and dealers of quality proven range of Mild Steel Plates, Structural, TMT Bars-Reinforcement Steel, ERW & Galvanized Pipes, Alloy Steel & H.R./C.R./G.P. Coils and Sheets. Our breadth and complete range of steel products enables us to be the one-stop source for anything in steel.</p>
-<p>We are well-equipped to handle and manage large quantity of material in a very efficient way</p>
-<ul>
-<li>Large and well-equipped godown with crane facility</li>
-<li>Experienced staff for handling of material.</li>
-<li>A team of personnel perform inspection of material to ensure only best product quality is dispatched to clients.</li>
-<li>Ready fleet of vehicles available for efficient and effective movement of material</li>
-</ul>
-</div>
+        <section class="section" aria-labelledby="cat-title">
+            <div class="container">
+                <div class="section-head-split">
+                    <div class="section-head">
+                        <p class="kicker">Product range</p>
+                        <h2 id="cat-title">The widest range of steel product categories</h2>
+                        <p>From Reinforcement Bars, Structural sections, Plates and all types of Flat Products, Hollow Sections all types of Pipes and Alloy Steels and all Ferrous &amp; Non Ferrous Special Steels — sourced to your grade, size and quantity.</p>
+                    </div>
+                    <a class="link-arrow" href="products.html">View all products <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true" focusable="false">
+                            <path d="M5 12h14"></path>
+                            <path d="m13 6 6 6-6 6"></path>
+                        </svg></a>
+                </div>
+                <ul class="product-grid">
+                    <li><a class="product-card" href="products.html?cat=bars">
+                            <span class="product-media"><img src="images/products/reinforcement-steel-tmt-bars.jpg"
+                                    alt="Ribbed TMT bars" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Bars</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">TMT reinforcement bars and M.S.
+                                    rounds</span><span class="product-more">Explore <svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                    <li><a class="product-card" href="products.html?cat=sections">
+                            <span class="product-media"><img src="images/products/m-s-beams.jpg"
+                                    alt="Stacked steel I-beams" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Structural sections</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">Angles, beams, channels, flats and
+                                    purlins</span><span class="product-more">Explore <svg viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                    <li><a class="product-card" href="products.html?cat=flat">
+                            <span class="product-media"><img src="images/products/h-r-sheets-and-coils.jpg"
+                                    alt="Hot-rolled steel coils" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Flat products</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">Plates, H.R. and C.R. sheets and
+                                    coils</span><span class="product-more">Explore <svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                    <li><a class="product-card" href="products.html?cat=hollow">
+                            <span class="product-media"><img
+                                    src="images/products/m-s-and-galvanised-square-hollow-sections.jpg"
+                                    alt="Square hollow sections" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Hollow sections</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">Circular, square and rectangular —
+                                    M.S. and galvanised</span><span class="product-more">Explore <svg
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                        focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                    <li><a class="product-card" href="products.html?cat=flat">
+                            <span class="product-media"><img
+                                    src="images/products/precoated-and-painted-sheets-profile-sheets.jpg"
+                                    alt="Colour-coated profile sheets" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Coated sheets</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">Galvanised, pre-coated and profile
+                                    sheets</span><span class="product-more">Explore <svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                    <li><a class="product-card" href="products.html?cat=pipes">
+                            <span class="product-media"><img src="images/products/seamless-tubes-and-saw-pipes.jpg"
+                                    alt="Large steel pipes" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Pipes</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">Seamless tubes and SAW
+                                    pipes</span><span class="product-more">Explore <svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                    <li><a class="product-card" href="products.html?cat=special">
+                            <span class="product-media"><img src="images/products/all-types-of-alloy-steels.jpg"
+                                    alt="Alloy steel round bars" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Special steels</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">Alloy steels, high tensile flats and
+                                    sections</span><span class="product-more">Explore <svg viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                    <li><a class="product-card" href="products.html?cat=wires">
+                            <span class="product-media"><img
+                                    src="images/products/m-s-and-g-i-wires-and-wire-rods-of-all-grades.jpg"
+                                    alt="Coils of steel wire" loading="lazy" width="800" height="600"></span>
+                            <span class="product-body"><span class="product-cat">Category</span><span
+                                    class="product-name">Wires &amp; semi-finished</span><span class="small muted"
+                                    style="margin: -6px 0 12px; line-height: 1.45">Wires, wire rods, ingots, billets and
+                                    melting scrap</span><span class="product-more">Explore <svg viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="m9 6 6 6-6 6"></path>
+                                    </svg></span></span>
+                        </a></li>
+                </ul>
+            </div>
+        </section>
 
-<div class="span25 pull-right serving_area">  
-<div class="welcome-title2 clearfix"  style="color:fff;" > <span>Our Serving Areas</span>  </div>
-<!--<marquee srollamount="5" scrolldelay="150" direction="up" height="250" onmouseover="this.stop()" onmouseout="this.start()" behaviour="slide"> 
+        <section class="section section-grey" aria-labelledby="why-title">
+            <div class="container split split-why">
+                <div>
+                    <p class="kicker">Why Unnati Ispat</p>
+                    <h2 id="why-title">Built for dependable supply, from godown to site</h2>
+                    <p class="lead">Since 2000 we have focused on the practical side of steel trading: understanding
+                        each requirement, sourcing the right material and getting it to you as agreed.</p>
+                    <figure style="margin: 28px 0 0; border-radius: 12px; overflow: hidden"><img
+                            src="images/site/mixed-steel-products.jpg" alt="Mixed structural and industrial steel products neatly organized in Unnati Ispat warehouse"
+                            loading="lazy" width="1280" height="720"
+                            style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover"></figure>
+                </div>
+                <div class="grid grid-2">
+                    <div class="card card-hover">
+                        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M5 21V7l7-4v18"></path>
+                                <path d="M12 5h9"></path>
+                                <path d="M18 5v6"></path>
+                                <path d="M16 11h4v3h-4z"></path>
+                                <path d="M2 21h13"></path>
+                                <path d="M5 11h7M5 15h7"></path>
+                            </svg></div>
+                        <h3>Large godown with crane facilities</h3>
+                        <p>Material is stored and handled at our godown, equipped with cranes for loading and unloading
+                            heavy sections, coils and bundles.</p>
+                    </div>
+                    <div class="card card-hover">
+                        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.9"></path>
+                                <path d="M16 3.1a4 4 0 0 1 0 7.8"></path>
+                            </svg></div>
+                        <h3>Experienced material-handling team</h3>
+                        <p>A trained team handles, sorts and loads steel safely, so that orders are dispatched in the
+                            right size, grade and quantity.</p>
+                    </div>
+                    <div class="card card-hover">
+                        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2">
+                                </path>
+                                <path d="M9 2h6v4H9z"></path>
+                                <path d="m9 14 2 2 4-4"></path>
+                            </svg></div>
+                        <h3>Material inspection before dispatch</h3>
+                        <p>Material is checked against the confirmed order — product, size, grade and quantity — before
+                            it leaves the godown.</p>
+                    </div>
+                    <div class="card card-hover">
+                        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M2 6h12v10H2z"></path>
+                                <path d="M14 10h4l4 4v2h-8"></path>
+                                <path d="M6.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                <path d="M17.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                            </svg></div>
+                        <h3>Ready fleet of vehicles for delivery</h3>
+                        <p>A ready fleet of vehicles supports timely delivery to customer sites and works, as agreed at
+                            the time of order.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section class="sourcing" aria-labelledby="src-title">
+            <div class="container">
+                <div class="sourcing-head">
+                    <h2 id="src-title">Our sourcing network</h2>
+                    <p>Primary producers, plus conversion processors and rerollers across India.</p>
+                </div>
+                <ul class="wordmarks">
+                    <li>SAIL</li>
+                    <li>Tata Steel</li>
+                    <li>JSW Steel</li>
+                    <li>Jindal Steel</li>
+                    <li>AM/NS India</li>
+                    <li>APL Apollo</li>
+                    <li class="wm-wide">Conversion processors &amp; rerollers across India</li>
+                </ul>
+                <p class="fineprint">Manufacturer names are shown as text to indicate our sourcing network.</p>
+            </div>
+        </section>
 
-</marquee>-->
+        <section class="band-dark wiron-band section" aria-labelledby="wiron-title">
+            <div class="container split">
+                <div>
+                    <p class="kicker">A product brand from Unnati Ispat</p>
+                    <p class="wordmark-wiron" id="wiron-title"><span class="wm-a">UNNATI</span> <span
+                            class="wm-b">WIRON</span></p>
+                    <h2 style="font-size: clamp(22px, 2.4vw, 28px)">M.S. Annealed Binding Wires</h2>
+                    <p>Annealed for flexibility and easy handling — made for bending, tying and securing, with hardness
+                        and other specifications customised to your requirement.</p>
+                    <ul class="spec-pills">
+                        <li><strong>Material</strong>Mild Steel (M.S.)</li>
+                        <li><strong>Diameter</strong>0.8 mm to 6 mm</li>
+                        <li><strong>Packing</strong>Coils or bundles</li>
+                    </ul>
+                    <div class="btn-row"><a class="btn btn-primary" href="wiron.html">Explore Unnati Wiron<svg
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M5 12h14"></path>
+                                <path d="m13 6 6 6-6 6"></path>
+                            </svg></a><button type="button" class="btn btn-light" data-open="quote"
+                            data-product="Unnati Wiron — M.S. Annealed Binding Wires">Enquire for Unnati Wiron</button>
+                    </div>
+                </div>
+                <figure><img src="images/site/banner7-hero.jpg"
+                        alt="Coils of annealed steel binding wire on a factory floor" loading="lazy" width="1600"
+                        height="477"></figure>
+            </div>
+        </section>
 
-<script type="text/javascript">
+        <section class="section" aria-labelledby="ind-title">
+            <div class="container">
+                <div class="section-head">
+                    <p class="kicker">Industries served</p>
+                    <h2 id="ind-title">A mixed B2B customer base</h2>
+                    <p>Different buyers prioritise grade, size, quantity, availability, delivery and commercial terms.
+                        We understand these priorities and coordinate sourcing to match.</p>
+                </div>
+                <div class="grid grid-3">
+                    <div class="card industry">
+                        <div class="icon-box blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M2 21h20"></path>
+                                <path d="M3 21V10l6 4v-4l6 4V6h6v15"></path>
+                                <path d="M7 17h2M12 17h2M17 17h2"></path>
+                            </svg></div>
+                        <div>
+                            <h3>Industrial manufacturers</h3>
+                            <p>Regular supply of steel for plants, equipment and maintenance.</p>
+                        </div>
+                    </div>
+                    <div class="card industry">
+                        <div class="icon-box blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                                <path
+                                    d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z">
+                                </path>
+                            </svg></div>
+                        <div>
+                            <h3>Engineering companies</h3>
+                            <p>Sections, plates and special steels for engineering projects.</p>
+                        </div>
+                    </div>
+                    <div class="card industry">
+                        <div class="icon-box blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path
+                                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z">
+                                </path>
+                            </svg></div>
+                        <div>
+                            <h3>Fabricators &amp; structural contractors</h3>
+                            <p>Structural sections, plates and hollow sections in the sizes your drawings call for.</p>
+                        </div>
+                    </div>
+                    <div class="card industry">
+                        <div class="icon-box blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M4 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"></path>
+                                <path d="M16 10h2a2 2 0 0 1 2 2v10"></path>
+                                <path d="M2 22h20"></path>
+                                <path d="M8 6h4M8 10h4M8 14h4M8 18h4"></path>
+                            </svg></div>
+                        <div>
+                            <h3>Builders &amp; infrastructure</h3>
+                            <p>TMT bars, structural steel and sheets for project sites.</p>
+                        </div>
+                    </div>
+                    <div class="card industry">
+                        <div class="icon-box blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M3 9l1.5-5h15L21 9"></path>
+                                <path d="M3 9h18v1.5a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"></path>
+                                <path d="M5 12.5V21h14v-8.5"></path>
+                                <path d="M10 21v-5h4v5"></path>
+                            </svg></div>
+                        <div>
+                            <h3>Steel traders &amp; dealers</h3>
+                            <p>Wide-range sourcing to complement your own stock.</p>
+                        </div>
+                    </div>
+                    <div class="card industry">
+                        <div class="icon-box blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M3 22h18"></path>
+                                <path d="M6 18v-7M10 18v-7M14 18v-7M18 18v-7"></path>
+                                <path d="M12 2l9 5H3z"></path>
+                                <path d="M4 18h16"></path>
+                            </svg></div>
+                        <div>
+                            <h3>Government &amp; institutional</h3>
+                            <p>Supply against specifications, with clear documentation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-//new pausescroller(name_of_message_array, CSS_ID, CSS_classname, pause_in_miliseconds)
-
-new pausescroller(pausecontent, "pscroller1", "someclass", 3000)
-document.write("<br />")
-
-</script>
-</div>
-
-
-<div class="clearfix"> </div>
-<div class="span98" style="background-color:#C3C3C3;padding:10px 0 10px 0; margin:15px 0 15px 0;text-align:center;">
-<img src="images/sail.png"><br>
-<b style="font-size:22px;color:#162959;padding-top:250px;">Authorized dealer for Steel Authority Of India Limited </b>
-</div>
-
-<div class="service-content">
-<hr>
-<div class="span48" style="background-color:#4885ed;color:#fff;;"> 
-<div class="features">
-<span> About us</span>
-
-<p>Mr. Bhaven A. Shah has started his entrepreneur journey in the year 1995, and his vision & foresight as an achiever, put forth his best initiation in pioneering the company. He is a firm believer in the merits of quality and ethics. His journey began as a small steel supplier in the suburbs of Mumbai, and today, the Multi-Crore Company, slowly and diligently built up a repertoire of blue chip clients and tender the services PAN India basis.</p>
-<a href="about_us.html" style="color:#fff;margin: -15px 35px 0 35px; padding:5px 10px 5px 10px;float:right;border:solid 1px #fff"> Read more</a>
-<br><br>
-</div>
-</div>
-<div class="span48 offset2" style="background-color:#606062;color:#fff;"> 
-<div class="features">
-<span> Quality Pledge</span>
-<p>We UNNATI ISPAT are committed to QUALITY, ON-TIME DELIVERY and COST-EFFECTIVENESS, to being very transparent and having customer orientated attitude to serve our best all the times, primarily since we want to be ranked as the "best" in our business. We are committed to customer satisfaction. Quality service is our basic strategy for survival and future growth. Our dedication to excellence is our prime mission. </p>
-<a href="quality.html" style="color:#fff;margin: -15px 35px 0 35px; padding:5px 10px 5px 10px;float:right;border:solid 1px #fff"> Read more</a>
-<br><br>
-</div>
-</div>
-</div>
-
-
-</div>
-
-</div>
-
-
-<div class="clearfix"> </div>
-<div class="service-content">
-<h2> Products </h2>
-<div class="clearfix"> </div>
-
-<div class="container">
-<div id="owl-demo2" class="owl-carousel owl-theme"> 
-<div class="item">
-<div class="span23"> 
-<div class="services">
-<img src="images/products/1.jpg" />
-
-</div>
-</div>
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/2.jpg" />
-
-</div>
-</div>
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/3.jpg" />
-
-</div>
-</div>
-
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/4.jpg" />
-
-</div>
-</div>
-
-</div>
-<div class="item">
-
-<div class="span23"> 
-<div class="services">
-<img src="images/products/5.jpg" />
-
-</div>
-</div>
-
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/6.jpg" />
-
-</div>
-</div>
-
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/7.jpg" />
-
-</div>
-</div>
-
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/8.jpg" />
-
-</div>
-</div>
-
-</div>
-
-<div class="item">
-
-<div class="span23"> 
-<div class="services">
-<img src="images/products/9.jpg" />
-
-</div>
-</div>
-
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/10.jpg" />
-
-</div>
-</div>
-
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/11.jpg" />
-
-</div>
-</div>
-
-<div class="span23 offset2"> 
-<div class="services">
-<img src="images/products/12.jpg" />
-
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-</div>
-
-
-<div class="clearfix"> </div>
-<div class="clients"> 
-<h2>We Deal With</h2>
-<p>We Trust in serving products of the most reputed brands in steel sector.</p>
- <div class="container"> 
-
-<div id="owl-demo3" class="owl-carousel owl-theme" style="margin-top:50px;margin-bottom:50px;"> 
-   <div class="item"> 
-<div class="span14 offset2"> <img src="images/logo/1.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/2.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/4.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/5.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/6.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/7.jpg"> </div>
-
-  </div>
-  <div class="item"> 
-
-<div class="span14 offset2"> <img src="images/logo/8.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/9.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/10.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/11.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/12.jpg"> </div>
-<div class="span14 offset2"> <img src="images/logo/13.jpg"> </div>
-  
-
-
-  </div>
-
-
-
-  
-   </div>
-</div>
- 
-</div>
-
-<div class="footer"> 
-<div class="container">
-<div class="span25"> 
-<div class="footer-title">Contact Us</div>
-<ul> 
-<li class="location">
-405, Globe Arcade,<br>
-Plot No. : RP-112,  <br>
-Nr. Ganesh Temple,<br>
-MIDC Resi. Area,<br>
-Dombivli (E), Pin 421203<br>
-Maharashtra, India</li>
-<li class="phone"> +91 91525 35156</li>
-<li class="email"> <a href="mailto:unnatiispat@gmail.com"> unnatiispat@gmail.com </a></li>
-<li class="email"> <a href="mailto:unnatiispat@gmail.com"> info@unnatiispat.com </a></li>
-</ul>
-</div>
-<div class="span18 offset1"> 
-<div class="footer-title">Quick Links</div>
-<ul> 
-<li><a href="about_us.html">ABOUT US</a> </li>
-<li><a href="products.html">PRODUCTS</a> </li>
-<li><a href="wiron.html">WIRONS</a> </li>
-<li><a href="quality.html">QUALITY</a> </li>
-<li><a href="contact_us.html">CONTACT US </a> </li>
-</ul>
-</div>
-
-     
-<div class="span18 offset1"> 
-<div class="footer-title">Quick Links</div>
-<ul> 
-<li><a href="angles.html" target="_blank"> M.S. ANGLES</a></li>
-<li><a href="chkplates.html" target="_blank">M.S. CHECK. PLATES</a></li>
-<li><a href="channels.html" target="_blank">M.S. CHANNELS</a> </li>
-<li><a href="beams.html" target="_blank">M.S. BEAMS</a></li>
-<li><a href="download/PIPE.pdf" target="_blank">ERW PIPES</a> </li>
-</ul>
-</div>
- <div class="span18 offset1"> 
-<div class="footer-title">Quick Links</div>
-<ul> 
-<li><a href="tmt.html" target="_blank"> TMT BARS</a> </li>
-<li><a href="download/RCTHOLLOW.pdf" target="_blank"> RCT. HOLLOW SECT.</a> </li>
-<li><a href="hrsheets.html" target="_blank">H.R. & C.R. SHEETS<a/></li>
-<li><a href="download/SQRHOLLOW.pdf" target="_blank"> SQR. HOLLOW SECT.</a> </li>
-<li><a href="download/PLATES.pdf" target="_blank"> M.S. PLATES</a></li>
-</ul>
-</div>
-<div class="span10 offset3"> 
-<div class="footer-title">Connect With Us</div>
-<ul> 
-<li><a href="https://www.facebook.com/unnatiispat/" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true" title="Facebook" style="font-size:45px;color:#DEDEDE;"></i></a> </li>
-<li><a href="https://www.linkedin.com/company/unnati-ispat"  target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true" title="Linked in" style="font-size:45px;color:#DEDEDE;"></i></a> </li>
-
-
-</ul>
-</div>
-
-<div class="clearfix"> </div>
-<div class="footer-bottom clearfix">
-<div class="copyright"> Copyright © 2024 Unnati Ispat, All Rights Reserved. </div>
-<div class="designed">Designed  by: <a href="https://www.linkedin.com/in/unnati9/" style="color: inherit;">Unnati Shah</a></div>
-
-
-</div>
-</div>
-</div>  
-<a class="scrollToTop" id="#" > <img src="images/back-top.png"> </a> 
- 
-<script type="text/javascript" src="js/jquery.min.js"> </script>
-<script type="text/javascript" src="js/bootstrap.js"> </script>
-<script type="text/javascript" src="js/owl.carousel.min.js"> </script>
-<script type="text/javascript" src="js/commen.js"> </script>
-<script>
-document.addEventListener('contextmenu', event => event.preventDefault());
-</script>
+        <section class="section section-grey" aria-labelledby="calc-title-home">
+            <div class="container">
+                <div class="calc-cta">
+                    <div>
+                        <p class="kicker">Weight calculator</p>
+                        <h2 id="calc-title-home">Estimate steel weight before you enquire</h2>
+                        <p class="muted">Work out the theoretical weight of bars, flats, plates, pipes and hollow
+                            sections from their dimensions — per metre, per piece and in tonnes.</p>
+                        <div class="btn-row mt-24"><button type="button" class="btn btn-primary" data-open="calc"><svg
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                    <path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z">
+                                    </path>
+                                    <path d="M8 6h8v4H8z"></path>
+                                    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+                                </svg>Open Weight Calculator</button><a class="btn btn-outline"
+                                href="weight-reference.html">Steel Weight Reference Centre</a></div>
+                    </div>
+                    <ul class="formula-list">
+                        <li><span>Round bar / TMT</span><code>kg/m = d² ÷ 162</code></li>
+                        <li><span>Flat</span><code>kg/m = w × t × 0.00785</code></li>
+                        <li><span>Plate / sheet</span><code>kg/m² = t × 7.85</code></li>
+                        <li><span>Circular pipe</span><code>kg/m = (OD − t) × t × 0.02466</code></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="band-dark cta-band" aria-labelledby="cta-title">
+            <div class="band-media"><img src="images/site/banner4-hero.jpg" alt="" loading="lazy"></div>
+            <div class="container">
+                <div>
+                    <p class="kicker">Enquiries</p>
+                    <h2 id="cta-title">Let us understand your steel requirement.</h2>
+                    <p>Share the product, grade, size, quantity and delivery location. We will confirm availability and
+                        commercial terms before supply.</p>
+                </div>
+                <div class="btn-row"><button type="button" class="btn btn-primary" data-open="quote">Request a
+                        Quote</button><a class="btn btn-light"
+                        href="https://wa.me/919152535156?text=Hello%20Unnati%20Ispat%2C%20I%20would%20like%20to%20enquire%20about%20steel%20products."
+                        target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                            focusable="false">
+                            <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path>
+                            <path
+                                d="M9.2 8.6c.3 2.9 2.3 4.9 5.2 5.2l.9-1.2-1.6-.9-.8.6a3.6 3.6 0 0 1-2.2-2.2l.6-.8-.9-1.6z">
+                            </path>
+                        </svg>WhatsApp</a><a class="btn btn-light" href="tel:+919152535156"><svg viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <path
+                                d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z">
+                            </path>
+                        </svg>Call us</a></div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-main">
+                <div>
+                    <span class="logo-plate"><img src="images/logo.png" alt="Unnati Ispat — Excellence in Steel Trading"
+                            width="1024" height="210" loading="lazy"></span>
+                    <p>Unnati Ispat is a steel trading and distribution company based in Mumbai,
+                        supplying a wide range of steel products to industrial, engineering and infrastructure buyers
+                        since 2000.</p>
+                    <div class="btn-row"><button type="button" class="btn btn-primary btn-sm" data-open="quote">Request
+                            a Quote</button><a class="btn btn-light btn-sm"
+                            href="https://wa.me/919152535156?text=Hello%20Unnati%20Ispat%2C%20I%20would%20like%20to%20enquire%20about%20steel%20products."
+                            target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                focusable="false">
+                                <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path>
+                                <path
+                                    d="M9.2 8.6c.3 2.9 2.3 4.9 5.2 5.2l.9-1.2-1.6-.9-.8.6a3.6 3.6 0 0 1-2.2-2.2l.6-.8-.9-1.6z">
+                                </path>
+                            </svg>WhatsApp</a></div>
+                </div>
+                <div>
+                    <h2>Quick links</h2>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="vision-mission.html">Vision &amp; Mission</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="wiron.html">Unnati Wiron</a></li>
+                        <li><a href="weight-reference.html">Steel Weight Reference Centre</a></li>
+                        <li><a href="calculator.html">Weight Calculator</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Products</h2>
+                    <ul class="footer-links">
+                        <li><a href="product-tmt-bars.html">TMT Bars</a></li>
+                        <li><a href="product-ms-angles.html">M.S. Angles</a></li>
+                        <li><a href="product-ms-beams.html">M.S. Beams</a></li>
+                        <li><a href="product-ms-channels.html">M.S. Channels</a></li>
+                        <li><a href="product-ms-plates.html">M.S. Plates</a></li>
+                        <li><a href="product-hr-sheets-coils.html">H.R. Sheets and Coils</a></li>
+                        <li><a href="product-square-hollow-sections.html">Hollow Sections</a></li>
+                        <li><a href="wiron.html">Unnati Wiron</a></li>
+                        <li><a href="products.html">All products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Contact</h2>
+                    <ul class="footer-contact">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"></path>
+                                <path d="M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path>
+                            </svg><span>Dombivli, Maharashtra, India<br><a class="footer-dir-link" href="contact.html">View Full Address &amp; Directions</a></span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path
+                                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z">
+                                </path>
+                            </svg><a href="tel:+919152535156">+91 91525 35156</a></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z">
+                                </path>
+                                <path d="m22 6-10 7L2 6"></path>
+                            </svg><span><a href="mailto:info@unnatiispat.com">info@unnatiispat.com</a><br><a
+                                    href="mailto:unnatiispat@gmail.com">unnatiispat@gmail.com</a></span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M15 3h6v6"></path>
+                                <path d="M10 14 21 3"></path>
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            </svg><a
+                                href="https://www.google.com/maps/search/?api=1&query=Globe+Arcade%2C+Plot+RP-112%2C+MIDC+Residential+Area%2C+Dombivli+East%2C+Maharashtra+421203"
+                                target="_blank" rel="noopener">Find us on Google Maps</a></li>
+                        <li class="footer-social-item"><div class="footer-social-tabs"><a class="footer-social-tab linkedin" href="https://www.linkedin.com/company/unnati-ispat" target="_blank" rel="noopener" aria-label="Unnati Ispat | LinkedIn" title="Unnati Ispat | LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg><span>Unnati Ispat | LinkedIn</span></a><a class="footer-social-tab facebook" href="https://www.facebook.com/unnatiispat/" target="_blank" rel="noopener" aria-label="Unnati Ispat | Dombivli | Facebook" title="Unnati Ispat | Dombivli | Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg><span>Unnati Ispat | Dombivli | Facebook</span></a></div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span data-year="">2026</span> Unnati Ispat. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <a class="wa-float"
+        href="https://wa.me/919152535156?text=Hello%20Unnati%20Ispat%2C%20I%20would%20like%20to%20enquire%20about%20steel%20products."
+        target="_blank" rel="noopener" aria-label="Chat with Unnati Ispat on WhatsApp (opens in a new tab)"><svg
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path>
+            <path d="M9.2 8.6c.3 2.9 2.3 4.9 5.2 5.2l.9-1.2-1.6-.9-.8.6a3.6 3.6 0 0 1-2.2-2.2l.6-.8-.9-1.6z"></path>
+        </svg><span class="wa-label">WhatsApp us</span></a>
+    <div class="modal" id="modal-quote" hidden="">
+        <div class="modal-backdrop" data-close=""></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="quote-title">
+            <div class="modal-head">
+                <div>
+                    <h2 id="quote-title">Request a Quote</h2>
+                    <p>Tell us the product, grade, size and quantity. Our team will get back to you on availability and
+                        commercial terms.</p>
+                </div>
+                <button class="modal-close" type="button" data-close="" aria-label="Close"><svg viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M6 6l12 12M18 6 6 18"></path>
+                    </svg></button>
+            </div>
+            <div class="modal-body">
+                <form class="enquiry-form" data-enquiry="" novalidate="">
+                    <div class="form-grid two">
+                        <div class="field"><label for="mq-name">Name <span class="req"
+                                    aria-hidden="true">*</span></label><input class="input" id="mq-name" name="name"
+                                type="text" autocomplete="name" required=""></div>
+                        <div class="field"><label for="mq-company">Company</label><input class="input" id="mq-company"
+                                name="company" type="text" autocomplete="organization"></div>
+                        <div class="field"><label for="mq-phone">Phone <span class="req"
+                                    aria-hidden="true">*</span></label><input class="input" id="mq-phone" name="phone"
+                                type="tel" autocomplete="tel" inputmode="tel" required=""></div>
+                        <div class="field"><label for="mq-email">Email</label><input class="input" id="mq-email"
+                                name="email" type="email" autocomplete="email"></div>
+                        <div class="field span-2"><label for="mq-product">Product</label><select class="select"
+                                id="mq-product" name="product">
+                                <option value="">Select a product</option>
+                                <option>Reinforcement Steel (TMT Bars)</option>
+                                <option>M.S. Rounds</option>
+                                <option>M.S. Angles</option>
+                                <option>M.S. Beams</option>
+                                <option>M.S. Channels</option>
+                                <option>M.S. Flats</option>
+                                <option>All Types of Purlins</option>
+                                <option>M.S. Plates</option>
+                                <option>M.S. Checkered Plates</option>
+                                <option>H.R. Sheets and Coils</option>
+                                <option>C.R. Sheets and Coils</option>
+                                <option>Galvanised Sheets</option>
+                                <option>Precoated and Painted Sheets (Profile Sheets)</option>
+                                <option>M.S. and Galvanised Circular Hollow Sections</option>
+                                <option>M.S. and Galvanised Square Hollow Sections</option>
+                                <option>M.S. and Galvanised Rectangular Hollow Sections</option>
+                                <option>Seamless Tubes and SAW Pipes</option>
+                                <option>All Types of Alloy Steels</option>
+                                <option>High Tensile Flat and Section Steels</option>
+                                <option>All Types of Melting Scraps</option>
+                                <option>Metal Ingots and Billets</option>
+                                <option>M.S. and G.I. Wires and Wire Rods of All Grades</option>
+                                <option>Nut-Bolts and Other Hardware Items</option>
+                                <option>Turbo Industrial Ventilation Fans</option>
+                                <option>Unnati Wiron — M.S. Annealed Binding Wires</option>
+                                <option>Multiple products / other requirement</option>
+                            </select></div>
+                        <div class="field span-2"><label for="mq-req">Requirement</label><textarea class="textarea"
+                                id="mq-req" name="requirement" rows="3" aria-describedby="mq-req-hint"></textarea><span
+                                class="hint" id="mq-req-hint">Grade, size and quantity — for example: Fe 500D TMT, 12 mm
+                                and 16 mm, 10 tonnes.</span></div>
+                        <div class="form-error span-2" role="alert" hidden=""></div>
+                        <div class="form-success span-2" role="status" hidden=""></div>
+                        <div class="form-actions span-2">
+                            <button class="btn btn-wa" type="submit" value="whatsapp"><svg viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                    <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z">
+                                    </path>
+                                    <path
+                                        d="M9.2 8.6c.3 2.9 2.3 4.9 5.2 5.2l.9-1.2-1.6-.9-.8.6a3.6 3.6 0 0 1-2.2-2.2l.6-.8-.9-1.6z">
+                                    </path>
+                                </svg>Send via WhatsApp</button>
+                            <button class="btn btn-outline" type="submit" value="email"><svg viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                    <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z">
+                                    </path>
+                                    <path d="m22 6-10 7L2 6"></path>
+                                </svg>Send via e-mail</button>
+                        </div>
+                        <p class="form-note span-2">This website does not store your details. Your enquiry opens,
+                            pre-filled, in WhatsApp or your e-mail app.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal-wide" id="modal-calc" hidden="">
+        <div class="modal-backdrop" data-close=""></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="calc-title">
+            <div class="modal-head">
+                <div>
+                    <h2 id="calc-title">Steel Weight Calculator</h2>
+                    <p>Theoretical weight from dimensions, using steel density 7,850 kg/m³.</p>
+                </div>
+                <button class="modal-close" type="button" data-close="" aria-label="Close"><svg viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                        <path d="M6 6l12 12M18 6 6 18"></path>
+                    </svg></button>
+            </div>
+            <div class="modal-body">
+                <div class="calc" data-calc="">
+                    <fieldset class="calc-types">
+                        <legend>1. Choose the section type</legend>
+                        <div class="type-grid">
+                            <div class="type-opt"><input type="radio" id="mc-t-round" name="mc-type" value="round"
+                                    checked=""><label for="mc-t-round"><svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
+                                    </svg>Round bar / TMT<small>Diameter</small></label></div>
+                            <div class="type-opt"><input type="radio" id="mc-t-flat" name="mc-type" value="flat"><label
+                                    for="mc-t-flat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true" focusable="false">
+                                        <path d="M3 9h18v6H3z"></path>
+                                    </svg>Flat<small>Width × thickness</small></label></div>
+                            <div class="type-opt"><input type="radio" id="mc-t-plate" name="mc-type"
+                                    value="plate"><label for="mc-t-plate"><svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="M7 6h14l-4 12H3z"></path>
+                                    </svg>Plate / sheet<small>L × W × t</small></label></div>
+                            <div class="type-opt"><input type="radio" id="mc-t-pipe" name="mc-type" value="pipe"><label
+                                    for="mc-t-pipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true" focusable="false">
+                                        <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
+                                        <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>
+                                    </svg>Circular pipe<small>OD × wall</small></label></div>
+                            <div class="type-opt"><input type="radio" id="mc-t-hollow" name="mc-type"
+                                    value="hollow"><label for="mc-t-hollow"><svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="M4 4h16v16H4z"></path>
+                                        <path d="M8 8h8v8H8z"></path>
+                                    </svg>Square / rectangular hollow<small>A × B × wall</small></label></div>
+                            <div class="type-opt"><input type="radio" id="mc-t-known" name="mc-type"
+                                    value="known"><label for="mc-t-known"><svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                        <path d="M5 4h14v3h-5.5v10H19v3H5v-3h5.5V7H5z"></path>
+                                    </svg>Beam / channel / angle<small>Known Kg/mtr as per Standard Section Weight Charts</small></label></div>
+                        </div>
+                    </fieldset>
+                    <div class="calc-body">
+                        <div>
+                            <p class="label"
+                                style="font-family: var(--font-head); font-weight: 700; font-size: 15px; margin: 0 0 12px">
+                                2. Enter dimensions (mm), length (m) and quantity</p>
+                            <div class="calc-fields">
+                                <div class="field" data-types="round"><label for="mc-d">Diameter (mm)</label><input
+                                        class="input" id="mc-d" name="d" type="number" inputmode="decimal" min="0"
+                                        step="any" value="12"></div>
+                                <div class="field" data-types="flat" hidden=""><label for="mc-fw">Width
+                                        (mm)</label><input class="input" id="mc-fw" name="fw" type="number"
+                                        inputmode="decimal" min="0" step="any" value="50"></div>
+                                <div class="field" data-types="flat" hidden=""><label for="mc-ft">Thickness
+                                        (mm)</label><input class="input" id="mc-ft" name="ft" type="number"
+                                        inputmode="decimal" min="0" step="any" value="6"></div>
+                                <div class="field" data-types="plate" hidden=""><label for="mc-pl">Length
+                                        (mm)</label><input class="input" id="mc-pl" name="pl" type="number"
+                                        inputmode="decimal" min="0" step="any" value="2500"></div>
+                                <div class="field" data-types="plate" hidden=""><label for="mc-pw">Width
+                                        (mm)</label><input class="input" id="mc-pw" name="pw" type="number"
+                                        inputmode="decimal" min="0" step="any" value="1250"></div>
+                                <div class="field" data-types="plate" hidden=""><label for="mc-pt">Thickness
+                                        (mm)</label><input class="input" id="mc-pt" name="pt" type="number"
+                                        inputmode="decimal" min="0" step="any" value="6"></div>
+                                <div class="field" data-types="pipe" hidden=""><label for="mc-od">Outside diameter
+                                        (mm)</label><input class="input" id="mc-od" name="od" type="number"
+                                        inputmode="decimal" min="0" step="any" value="48.3"></div>
+                                <div class="field" data-types="pipe" hidden=""><label for="mc-pwt">Wall thickness
+                                        (mm)</label><input class="input" id="mc-pwt" name="pwt" type="number"
+                                        inputmode="decimal" min="0" step="any" value="3.2"></div>
+                                <div class="field" data-types="hollow" hidden=""><label for="mc-ha">Side A
+                                        (mm)</label><input class="input" id="mc-ha" name="ha" type="number"
+                                        inputmode="decimal" min="0" step="any" value="50"></div>
+                                <div class="field" data-types="hollow" hidden=""><label for="mc-hb">Side B
+                                        (mm)</label><input class="input" id="mc-hb" name="hb" type="number"
+                                        inputmode="decimal" min="0" step="any" value="50"></div>
+                                <div class="field" data-types="hollow" hidden=""><label for="mc-hwt">Wall thickness
+                                        (mm)</label><input class="input" id="mc-hwt" name="hwt" type="number"
+                                        inputmode="decimal" min="0" step="any" value="3.2"></div>
+                                <div class="field full" data-types="known" hidden=""><label for="mc-kgm">Weight from
+                                        section table (kg/m)</label><input class="input" id="mc-kgm" name="kgm"
+                                        type="number" inputmode="decimal" min="0" step="any" value="4.50"></div>
+                                <div class="field" data-types="round flat pipe hollow known"><label for="mc-len">Length
+                                        per piece (m)</label><input class="input" id="mc-len" name="len" type="number"
+                                        inputmode="decimal" min="0" step="any" value="12"></div>
+                                <div class="field" data-types="round flat plate pipe hollow known"><label
+                                        for="mc-qty">Quantity (pieces)</label><input class="input" id="mc-qty"
+                                        name="qty" type="number" inputmode="decimal" min="0" step="any" value="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-out">
+                            <span class="out-label">Theoretical estimate</span>
+                            <dl>
+                                <div>
+                                    <dt data-per-label="">Weight per metre</dt>
+                                    <dd data-out="per">0.889 kg/m</dd>
+                                </div>
+                                <div>
+                                    <dt data-piece-label="">Weight per piece</dt>
+                                    <dd data-out="piece">10.67 kg</dd>
+                                </div>
+                                <div class="total">
+                                    <dt>Total weight</dt>
+                                    <dd data-out="total" aria-live="polite">1,066.67 kg</dd>
+                                </div>
+                                <div>
+                                    <dt>Total in tonnes</dt>
+                                    <dd data-out="tonnes">1.067 t</dd>
+                                </div>
+                            </dl>
+                            <p class="calc-msg" data-msg="" hidden=""></p>
+                            <p class="calc-formula">Formula: <code data-formula="">kg/m = d² ÷ 162</code></p>
+                        </div>
+                    </div>
+                    <p class="calc-note">Steel density 7,850 kg/m³. This is a theoretical estimate. Nominal manufacturer
+                        weight, theoretical calculated weight and actual dispatch weight are different and can vary
+                        within applicable tolerances.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
-
-<!-- Mirrored from alcancekeys.com/trainathon/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Jun 2015 05:33:45 GMT -->
 </html>
-
