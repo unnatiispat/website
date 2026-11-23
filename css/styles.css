@@ -1,5 +1,5 @@
 /* ==========================================================================
-   UNNATI ISPAT — shared stylesheet
+   UNNATI ISPAT: shared stylesheet
    Industrial Premium · mobile-first · no framework
    Steel-Themed Metallic Palette:
      - Primary Steel Grey: #71797E
@@ -15,25 +15,25 @@
 :root {
   /* 1. Core Metallic Steel Shades */
   --steel-primary: #71797E;
-  /* Primary Steel Grey — structural borders, accents, hovers */
+  /* Primary Steel Grey: structural borders, accents, hovers */
   --steel-gunmetal: #2C3539;
-  /* Gunmetal Grey — topbar, headings, dark surfaces */
+  /* Gunmetal Grey: topbar, headings, dark surfaces */
   --steel-brushed: #A7ADB0;
-  /* Brushed Steel — borders, secondary metadata, dividers */
+  /* Brushed Steel: borders, secondary metadata, dividers */
   --steel-silver: #C0C7CC;
-  /* Metallic Silver — card borders, highlights, subtext */
+  /* Metallic Silver: card borders, highlights, subtext */
   --steel-charcoal: #252B30;
-  /* Charcoal — deep hero backgrounds, dark bands, footer */
+  /* Charcoal: deep hero backgrounds, dark bands, footer */
 
   /* 2. Steel Surfaces & Backgrounds */
   --navy: #252B30;
-  /* Charcoal — replaces legacy navy in dark bands, heroes, footer */
+  /* Charcoal: replaces legacy navy in dark bands, heroes, footer */
   --navy-2: #1D2226;
   /* Deep Charcoal for footer-bottom and high-contrast surfaces */
   --blue: #2C3539;
-  /* Gunmetal Grey — for dark buttons & dark elements */
+  /* Gunmetal Grey: for dark buttons & dark elements */
   --blue-hover: #71797E;
-  /* Primary Steel Grey — hover state */
+  /* Primary Steel Grey: hover state */
   --blue-text: #2C3539;
   /* crisp gunmetal for links & text */
   --blue-on-dark: #C0C7CC;
@@ -60,9 +60,9 @@
   --field: #A7ADB0;
   /* brushed steel input border */
 
-  /* 4. Brand Orange & Accents (#FE4500) — high-contrast vibrancy */
+  /* 4. Brand Orange & Accents (#FE4500): high-contrast vibrancy */
   --orange: #FE4500;
-  /* brand orange — accents, rules, icons, primary CTAs */
+  /* brand orange: accents, rules, icons, primary CTAs */
   --orange-btn: #FE4500;
   /* button fill */
   --orange-btn-hover: #E03E00;
@@ -3586,7 +3586,7 @@ table.gauge-table tbody tr:hover td.col-gauge {
   font-weight: 600;
   line-height: 1.75;
   color: #364147;
-  /* Professional Steel Gunmetal Grey — unified across entire matter */
+  /* Professional Steel Gunmetal Grey: unified across entire matter */
   letter-spacing: .01em;
   margin-bottom: 18px;
 }

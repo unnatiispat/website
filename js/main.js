@@ -1,4 +1,4 @@
-/* UNNATI ISPAT — shared script (vanilla JS, no dependencies) */
+/* UNNATI ISPAT: shared script (vanilla JS, no dependencies) */
 (function () {
   'use strict';
 
@@ -127,7 +127,7 @@
       ['name', 'phone'].forEach(function (n) { var f = form.elements.namedItem(n); if (f) f.removeAttribute('aria-invalid'); });
 
       var product = val(form, 'product');
-      var lines = ['Steel enquiry — via unnatiispat.com', '', 'Name: ' + name];
+      var lines = ['Steel enquiry via unnatiispat.com', '', 'Name: ' + name];
       if (val(form, 'company')) lines.push('Company: ' + val(form, 'company'));
       lines.push('Phone: ' + phone);
       if (val(form, 'email')) lines.push('Email: ' + val(form, 'email'));
@@ -136,7 +136,7 @@
       var text = lines.join('\n');
 
       if (via === 'email') {
-        var subject = 'Steel enquiry' + (product ? ' — ' + product : '') + ' — ' + name;
+        var subject = 'Steel enquiry' + (product ? ': ' + product : '') + ' from ' + name;
         window.location.href = 'mailto:' + EMAIL_TO + '?cc=' + encodeURIComponent(EMAIL_CC) +
           '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
       } else {
@@ -281,10 +281,10 @@
       msg.textContent = problem || (valid ? '' : 'Enter positive values in every field to see the estimate.');
       msg.hidden = valid;
     }
-    out('per', valid ? fmt(unitW, 3) + (type === 'plate' ? ' kg/m²' : ' kg/m') : '—');
-    out('piece', valid ? fmt(piece, 2) + ' kg' : '—');
-    out('total', valid ? fmt(total, 2) + ' kg' : '—');
-    out('tonnes', valid ? fmt(total / 1000, 3) + ' t' : '—');
+    out('per', valid ? fmt(unitW, 3) + (type === 'plate' ? ' kg/m²' : ' kg/m') : '-');
+    out('piece', valid ? fmt(piece, 2) + ' kg' : '-');
+    out('total', valid ? fmt(total, 2) + ' kg' : '-');
+    out('tonnes', valid ? fmt(total / 1000, 3) + ' t' : '-');
   }
 
   document.querySelectorAll('[data-calc]').forEach(function (calc) {

@@ -1,4 +1,4 @@
-# Unnati Ispat — website
+# Unnati Ispat website
 
 Static HTML/CSS/JS site. No framework and no build step, ready for GitHub Pages.
 
@@ -17,9 +17,9 @@ Static HTML/CSS/JS site. No framework and no build step, ready for GitHub Pages.
 ## Structure
 - `index.html`, `about.html`, `vision-mission.html`, `products.html`, `wiron.html`,
   `weight-reference.html`, `calculator.html`, `contact.html`
-- `product-*.html` — one page per product, all built on the same template
+- `product-*.html`: one page per product, all built on the same template
   (TMT Bars, M.S. Angles and Square Hollow Sections carry full reference-weight tables)
-- `css/styles.css` — the shared stylesheet; `js/main.js` — the shared script
+- `css/styles.css`: the shared stylesheet; `js/main.js`: the shared script
 
 ## How enquiries work
 There is no backend. The Request a Quote forms open a pre-filled WhatsApp message to +91 91525 35156
